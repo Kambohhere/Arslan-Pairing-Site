@@ -6,7 +6,7 @@ const fs = require('fs');
 let router = express.Router();
 const pino = require('pino');
 const {
-    default: Arslan_Tech,
+    default: UMAIR_Tech,
     useMultiFileAuthState,
     delay,
     makeCacheableSignalKeyStore,
@@ -22,10 +22,10 @@ router.get('/', async (req, res) => {
     const id = makeid();
     let num = req.query.number;
     
-    async function Arslan_MD_PAIR_CODE() {
+    async function UMAIR_MD_PAIR_CODE() {
         const { state, saveCreds } = await useMultiFileAuthState('./temp/' + id);
         try {
-            let Pair_Code_By_Arslan_Tech = Arslan_Tech({
+            let Pair_Code_By_UMAIR_Tech = UMAIR_Tech({
                 auth: {
                     creds: state.creds,
                     keys: makeCacheableSignalKeyStore(state.keys, pino({ level: 'fatal' }).child({ level: 'fatal' })),
@@ -35,17 +35,17 @@ router.get('/', async (req, res) => {
                 browser: Browsers.macOS('Chrome')
             });
 
-            if (!Pair_Code_By_Arslan_Tech.authState.creds.registered) {
+            if (!Pair_Code_By_UMAIR_Tech.authState.creds.registered) {
                 await delay(1500);
                 num = num.replace(/[^0-9]/g, '');
                 const code = await Pair_Code_By_Arslan_Tech.requestPairingCode(num);
                 if (!res.headersSent) {
                     await res.send({ code });
                 }
-            }
+           }
 
-            Pair_Code_By_Arslan_Tech.ev.on('creds.update', saveCreds);
-            Pair_Code_By_Arslan_Tech.ev.on('connection.update', async (s) => {
+            Pair_Code_By_UMAIR_Tech.ev.on('creds.update', saveCreds);
+            Pair_Code_By_UMAIR_Tech.ev.on('connection.update', async (s) => {
                 const { connection, lastDisconnect } = s;
                 if (connection === 'open') {
                     await delay(5000);
@@ -54,7 +54,7 @@ router.get('/', async (req, res) => {
                     let b64data = Buffer.from(data).toString('base64');
                     let session = await Pair_Code_By_Arslan_Tech.sendMessage(Pair_Code_By_Arslan_Tech.user.id, { text: 'UMAIR-MD~' + b64data });
 
-                    let Arslan_MD_TEXT = `
+                    let UMAIR_MD_TEXT = `
         
 ╔════════════════════◇
 ║『 SESSION CONNECTED』
@@ -73,7 +73,7 @@ router.get('/', async (req, res) => {
 ╔════════════════════◇
 ║ 『••• _V𝗶𝘀𝗶𝘁 𝗙𝗼𝗿_H𝗲𝗹𝗽 •••』
 ║❍ 𝐎𝐰𝐧𝐞𝐫: 923453897509
-║❍ 𝐑𝐞𝐩𝐨: https://github.com/Arslan-MD/Arslan_MD
+║❍ 𝐑𝐞𝐩𝐨: https://github.com/UMAIR-MD/UMAIR_MD
 ║❍ 𝐖𝐚𝐆𝗿𝐨𝐮𝐩: https://chat.whatsapp.com/Kgg8V9aATB5IC6eEj04CRX?mode=gi_t
 ║❍ 𝐖𝐚𝐂𝐡𝐚𝐧𝐧𝐞𝐥: https://whatsapp.com/channel/0029Vb7Q0pB6LwHmmwCoAw2L
 ║
@@ -87,14 +87,14 @@ router.get('/', async (req, res) => {
 Don't Forget To Give Star⭐ To My Repo
 ______________________________`;
 
-                    await Pair_Code_By_Arslan_Tech.sendMessage(Pair_Code_By_Arslan_Tech.user.id, { text: Toxic_MD_TEXT }, { quoted: session });
+                    await Pair_Code_By_UMAIR_Tech.sendMessage(Pair_Code_By_Arslan_Tech.user.id, { text: Toxic_MD_TEXT }, { quoted: session });
 
                     await delay(100);
-                    await Pair_Code_By_Arslan_Tech.ws.close();
+                    await Pair_Code_By_UMAIR_Tech.ws.close();
                     return await removeFile('./temp/' + id);
                 } else if (connection === 'close' && lastDisconnect && lastDisconnect.error && lastDisconnect.error.output.statusCode != 401) {
                     await delay(10000);
-                    Arslan_MD_PAIR_CODE();
+                    UMAIR_MD_PAIR_CODE();
                 }
             });
         } catch (err) {
@@ -106,7 +106,7 @@ ______________________________`;
         }
     }
     
-    return await Arslan_MD_PAIR_CODE();
+    return await UMAIR_MD_PAIR_CODE();
 });
 
 module.exports = router;
