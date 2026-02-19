@@ -61,8 +61,8 @@ router.get('/', async (req, res) => {
 				   let Arslan_MD_TEXT = `
 ╔════════════════════◇
 ║『 SESSION CONNECTED』
-║ ✨Arslan-MD🔷
-║ ✨ArslanMD OFFICIAL🔷
+║ ✨Umair-MD🔷
+║ ✨UmairMD OFFICIAL🔷
 ╚════════════════════╝
 
 
